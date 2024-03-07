@@ -36,8 +36,8 @@ attributes = c('hgnc_symbol','entrezgene_id','gene_biotype')
 #query for gene biotypes
 gene_names_biotypes = getBM(filters = "ensembl_gene_id", #define qeury input
                       attributes = attributes, #define qeury output
-		              values = ensembl_genes, #list of ensembl genes
-		              mart = mart)
+					  values = ensembl_genes, #list of ensembl genes
+					  mart = mart)
 colnames(gene_names_biotypes) = c('ensembl','hgnc','entrez','biotype')
 
 #save data frame as csv

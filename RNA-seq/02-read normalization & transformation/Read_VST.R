@@ -16,9 +16,7 @@ setwd(dir)
 
 #load packages
 library(dplyr)
-library(tidyr)
 library(DESeq2)
-library(ggplot2)
 source("https://raw.githubusercontent.com/dswede43/bioinformatics_analyses/main/Functions/load_read_count_data.R")
 
 #load data

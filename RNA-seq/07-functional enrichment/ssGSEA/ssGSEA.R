@@ -6,6 +6,9 @@
 
 #define global variables
 dir = "/path/to/directory"
+norm_read_counts_file = 'your_norm_read_counts.csv' #file name of normalized read counts
+biotypes_file = 'your_gene_biotypes.csv' #file name of gene biotypes
+
 count_cutoff = 2
 gene_annotation = 'ensembl'
 gene_biotype = 'protein_coding' #gene biotypes of interest
@@ -22,8 +25,8 @@ library(openxlsx)
 
 
 #load data
-norm_counts = read.csv("Data/Norm_counts_BDC_combined.csv", header = TRUE, sep = ",", row.names = 1) #gene normalized read counts
-biotypes = read.csv("Results/RNA biotyping/Bedrest_RNA_biotypes.csv") #gene biotypes
+norm_counts = read.csv(norm_read_counts_file, header = TRUE, sep = ",", row.names = 1) #gene normalized read counts
+biotypes = read.csv(biotypes_file) #gene biotypes
 
 
 #Filter genes by read counts and biotype
@@ -67,4 +70,4 @@ for(sample in colnames(norm_counts)){
 }
 
 #save results as an excel file
-write.xlsx(ssgsea_results, file = "ssGSEA_results.xlsx", rowNames = F)
+write.xlsx(ssgsea_results, file = "ssGSEA_results.xlsx", rowNames = FALSE)

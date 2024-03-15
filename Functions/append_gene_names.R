@@ -19,7 +19,7 @@ append_gene_names = function(gene_names, ensembl_df){
 	rownames(gene_names_df) = NULL
 	
 	#join these genes names to the data frame containing ensembl id's
-	result = inner_join(ensembl_df, gene_names_df, by = 'ensembl')
+	result = left_join(ensembl_df, gene_names_df, by = 'ensembl')
 	
 	return(result)
 }

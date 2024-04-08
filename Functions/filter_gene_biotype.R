@@ -5,6 +5,7 @@
 #paramters
 #gene_biotypes: list of gene biotypes (protein-coding, lncRNA, snRNA, etc.) with associated ensembl id's as the list names
 #ensembl_df: data frame containing ensembl id's as a column (column must be named 'ensembl')
+#biotype: name of the biotype to keep in the 'ensembl_df' data frame
 
 
 #load packages

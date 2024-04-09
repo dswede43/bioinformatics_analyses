@@ -16,6 +16,10 @@ My custom functions.
 
 Pipeline of analysis for bulk RNA-seq experiments.
 
+### scRNA-seq
+
+Pipeine of analysis for single-cell RNA-seq experiments.
+
 ### Simulations
 
 Various data simulations.

@@ -8,9 +8,6 @@
 #paramters
 #gsea_df: data frame of GSEA results outputted from the gseGO() function from the ClusterProfiler package.
 
-#load packages
-library(dplyr)
-
 
 #Function
 #---

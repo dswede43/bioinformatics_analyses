@@ -12,7 +12,6 @@ library(Seurat)
 library(sctransform)
 
 #define global variables
-unique_count_thresholds = c(200, 2500) #number of unique gene counts thresholds
 sparse_mat_dir = "PBMC_data/"
 project_name = "PBMC"
 seurat_output_file = paste0(sparse_mat_dir, "PBMC_seurat_preprocessed.rds")

@@ -4,6 +4,7 @@
 #---
 #This script automates the alignment of single-end reads from FASTQ files for multiple samples
 #to a reference index and output SAM files.
+#HSIAT2 documentation: https://daehwankimlab.github.io/hisat2/manual/
 
 #directory structure:
 #---samples/

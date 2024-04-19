@@ -8,7 +8,7 @@
 library(dplyr)
 
 #define global variables
-dir = "/media/sf_VM_share/RNA-seq_data/KneeOA/outputs/quants" #working directory
+dir = "/path/to/directory" #working directory
 
 #set working directory
 setwd(dir)

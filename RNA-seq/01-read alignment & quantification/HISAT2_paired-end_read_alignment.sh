@@ -11,7 +11,7 @@
 #---outputs/mappings/
 
 #define global variables
-DIR="/media/sf_VM_share/RNA-seq_data/Immune_cells-GSE107011" #working directory
+DIR="/path/to/directory" #working directory
 
 
 #Read mapping

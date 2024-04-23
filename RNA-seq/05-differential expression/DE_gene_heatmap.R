@@ -63,15 +63,15 @@ LFC_matrix = column_to_rownames(LFC_matrix, var = "hgnc")[,-1]
 #Create heatmap using pheatmap
 #---
 #define the heatmap aesthetics
-breaks <- seq(min(LFC_matrix), max(LFC_matrix), by = 0.1) #set color scale breaks for heatmap
-colors <- colorRampPalette(c("#FFDD00","#FFFFFF","#00BBFF"))(length(breaks)) #set color scale for heatmap
-height <- 2 #set cellheight for heatmap
-width <- 12 #set cellwidth for heatmap
-font <- 8 #set fontsize for heatmap
+breaks = seq(min(LFC_matrix), max(LFC_matrix), by = 0.1) #set color scale breaks for heatmap
+colors = colorRampPalette(c("#FFDD00","#FFFFFF","#00BBFF"))(length(breaks)) #set color scale for heatmap
+height = 2 #set cellheight for heatmap
+width = 12 #set cellwidth for heatmap
+font = 8 #set fontsize for heatmap
 
 #heatmap column annotations
-annot_col <- data.frame(condition = rep(conditions, c(6, 7)))
-rownames(annot_col) <- colnames(LFC_matrix)
+annot_col = data.frame(condition = rep(conditions, c(6, 7)))
+rownames(annot_col) = colnames(LFC_matrix)
 
 #plot the heatmap
 pheatmap(LFC_matrix,

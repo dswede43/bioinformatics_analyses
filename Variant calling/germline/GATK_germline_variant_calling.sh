@@ -42,15 +42,15 @@ for sample_name in ${sample_names}; do
 	input_bam=outputs/mappings/${sample_name}/sample${sample_name}_dup_flags_bqsr.bam
 
 	#define the output VCF file
-    mkdir -p $DIR/outputs/variants/$sample_name
-	output_vcf=outputs/mappings/${sample_name}/sample${sample_name}_variants.vcf
+    mkdir -p outputs/variants/$sample_name
+	output_vcf=outputs/mappings/${sample_name}/sample${sample_name}_raw_variants.vcf
 
 	#run germline variant calling
 	gatk HaplotypeCaller -I $input_bam -O $output_vcf -R $ref_index
 
 	#record the end time
 	end_time=$(date +%s)
- 
+
 	#store the sample runtime
 	run_time=$(( end_time - start_time ))
 	run_times+=("sample $sample_name: $(( run_time / 60 )) minutes")

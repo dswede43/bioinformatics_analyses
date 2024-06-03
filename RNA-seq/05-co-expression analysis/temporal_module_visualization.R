@@ -2,7 +2,9 @@
 
 #Module z-score plot
 #---
-#Script to visualize the expression changes of modules obtained from WGCNA using a Z-score plot.
+#Script to visualize the expression changes of modules obtained from WGCNA for a temporal study design.
+#The visualization is created by Z-score scaling the normalized read counts across genes at each timepoint.
+#Z-scores are then plotted across time to visualize the expression changes for each gene module.
 
 #Table of contents:
 #---

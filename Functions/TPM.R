@@ -3,8 +3,8 @@
 #Function to normalize RNA-seq read counts using Transcripts Per Million (TPM).
 
 #parameters
-#read_counts: matrix of read counts where rows are genes and columns are samples
-#gene_lengths: max lengths of each gene
+#read_counts: data frame of read counts where rows are genes and columns are samples
+#gene_lengths: vector of max lengths of each gene
 
 
 #Function

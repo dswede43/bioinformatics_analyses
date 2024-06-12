@@ -87,7 +87,20 @@ bw_network = blockwiseModules(exp_mat, #expression matrix (rows = samples, colum
 #print the number of genes assigned to each module
 table(bw_network$colors)
 
-#save results as json
+#visualize the modules with dendrogram and save as PDF
+pdf("module_dendrogram.pdf", height = 8, width = 10)
+plotDendroAndColors(dendro = bw_network$dendrograms[[1]],
+					colors = bw_network$colors,
+					groupLabels = phase,
+					dendroLabels = FALSE,
+					addGuide = TRUE,
+					autoColorHeight = FALSE,
+					colorHeight = 0.1,
+					hang = 0.03,
+					guideHang = 0.05)
+dev.off()
+
+#save results as JSON
 bw_network$genes = names(bw_network$colors)
 write(toJSON(bw_networks), paste0(SIGN, "_module_network.json"))
 

@@ -34,7 +34,7 @@ def main():
     st.header('Alliance Genome Data Mining', divider = 'blue')
     
     #add text to explain the app
-    st.write("This web application is used to query the [Alliance Genome of Resources consortium](https://www.alliancegenome.org/) for biologically relevant keywords and returns lists of genes with functions associated to those keywords. Data is obtained through API queries with [Alliance Genome's API](https://www.alliancegenome.org/swagger-ui/). Source code can be found on [Github](https://github.com/dswede43).")
+    st.write("This web application is used to query the [Alliance Genome of Resources consortium](https://www.alliancegenome.org/) for biologically relevant keywords and returns lists of genes with functions associated to those keywords. Data is obtained through API queries with [Alliance Genome's API](https://www.alliancegenome.org/swagger-ui/). Source code can be found on [Github](https://github.com/dswede43/bioinformatics_analyses/tree/main/Alliance%20Genome%20data%20mining).")
     st.write("Please input a comma-separated list of keywords below!")
     st.write("**NOTE: the more specific the keyword is, the less genes that are associated and results in shorter query times.**")
     

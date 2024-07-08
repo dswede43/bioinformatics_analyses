@@ -3,8 +3,10 @@
 #Script to run the app UI via Streamlit.
 
 #import packages
+from PIL import Image
 import streamlit as st
 import json
+import pandas as pd
 import helpers
 
 #define global variables
@@ -22,8 +24,14 @@ SPECIES = ['Homo sapiens',
 #App UI
 #---
 def main():
+    #set page customizations
+    im = Image.open("static/favicon-16x16.png")
+    st.set_page_config(
+        page_title = "Data Mining",
+        page_icon = im)
+    
     #set the web app title
-    st.header('Alliance Genome data mining', divider = 'blue')
+    st.header('Alliance Genome Data Mining', divider = 'blue')
     
     #add text to explain the app
     st.write("This web application is used to query the [Alliance Genome of Resources consortium](https://www.alliancegenome.org/) for biologically relevant keywords and returns lists of genes with functions associated to those keywords. Data is obtained through API queries with [Alliance Genome's API](https://www.alliancegenome.org/swagger-ui/). Source code can be found on [Github](https://github.com/dswede43).")
@@ -40,19 +48,36 @@ def main():
         #format the inputted keywords
         keywords = [keyword.strip() for keyword in keywords.split(',')]
         
-        #obtain the query limits for each keyword
-        limits = helpers.query_limit(keywords)
-                
-        #query Alliance Genome for keywords
-        gene_data = helpers.query_keywords(keywords, limits, species = species)
+        #define an empty data frame
+        gene_data = pd.DataFrame(columns = ['hgnc','name','id','biotype','keyword'])
         
-        #add download data button        
+        for keyword in keywords:
+            #obtain the query limits and offsets for each keyword
+            limit, offsets = helpers.query_limit(keyword)
+            
+            #create progress bar header
+            st.write('Keyword: ' + keyword)
+            
+            #intialize the progress bar
+            progress_bar = st.progress(0)
+            total_progress = len(offsets)
+            i = 0
+            for offset in offsets:
+                #query Alliance Genome for keywords
+                df = helpers.query_keyword(keyword, limit, offset, species = species)
+                
+                #store the results
+                gene_data = pd.concat([gene_data, df], ignore_index = True)
+                
+                #update progress bar
+                i += 1
+                progress_bar.progress(i / total_progress)
+        
+        #convert data for export
         csv = helpers.convert_df(gene_data)
-        st.download_button(
-            label = "Download data as CSV",
-            data = csv,
-            file_name = "keyword_gene_associations.csv",
-            mime = "text/csv")
+        
+        #display the download button
+        helpers.show_download_button(csv)
         
         #display data
         st.dataframe(gene_data)

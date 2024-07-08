@@ -1,0 +1,8 @@
+[server]
+port = 5003
+
+[theme]
+base="light"
+primaryColor="#17a2b8"
+secondaryBackgroundColor="#f7f2f2"
+textColor="#17a2b8"

@@ -162,6 +162,9 @@ padj_mat = padj_mat[-1]
 #define an empty excel workbook
 wb = createWorkbook()
 
+#define an empty list
+module_overlaps = list()
+
 #gene modules from network A
 for (i in 1:nrow(overlap_mat)){
 	#define the current module
@@ -201,11 +204,15 @@ for (i in 1:nrow(overlap_mat)){
 
 		#if the p-value is statistically signficant
 		if (padj < PADJ_CUTOFF){
+			#summarize the data as a data frame
+			module_overlap = data.frame(ensembl = ensembl_genes,
+										hgnc = hgnc_genes,
+										module_overlap_len = overlap_len,
+										module_overlap_padj = padj)
+
 			#store the results
-			sig_overlaps[[netB_module]] = data.frame(ensembl = ensembl_genes,
-															   hgnc = hgnc_genes,
-															   module_overlap_len = overlap_len,
-															   module_overlap_padj = padj)
+			sig_overlaps[[netB_module]] = module_overlap
+			module_overlaps[[netA_module]][[netB_module]] = module_overlap
 		}
 	}
 
@@ -233,3 +240,4 @@ for (i in 1:nrow(overlap_mat)){
 
 #save results as xlsx
 saveWorkbook(wb, file = "Significant_module_overlaps.xlsx", overwrite = TRUE)
+write(toJSON(module_overlaps), "significant_module_overlaps.json")

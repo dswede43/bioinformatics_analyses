@@ -16,8 +16,8 @@ This script requires GATK to run. I used the official [GATK Docker image](https:
 ```docker run -v .:/gatk/my_data -it broadinstitute/gatk:4.1.3.0```
 
 4. Change directory and run the script
-```cd my_data
-./part1-VCF_filtering.sh```
+```cd my_data```
+```./part1-VCF_filtering.sh```
 
 ### Output
 This script outputs the updated VCF files to ```filtered_vcfs/``` with all logs stored in the ```logs/``` directory.

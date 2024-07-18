@@ -2,7 +2,7 @@
 
 ## Part 1: VCF filtering
 ### Script
-part1-VCF_filtering.sh
+**part1-VCF_filtering.sh**
 
 This script requires GATK to run. I used the official [GATK Docker image](https://hub.docker.com/r/broadinstitute/gatk) from the Broad Insititute.
 
@@ -20,13 +20,17 @@ This script requires GATK to run. I used the official [GATK Docker image](https:
 ```./part1-VCF_filtering.sh```
 
 ### Output
-This script outputs the updated VCF files to ```filtered_vcfs/``` with all logs stored in the ```logs/``` directory.
+1. Updated VCF files in the ```filtered_vcfs/``` folder
+
+2. Logs stored in the ```logs/``` folder
 
 ## Part 2: VCF summary and visualization
-This part of the assignment uses an Rmarkdown script. Knitting this script in Rstudio will re-run it and install all necessary packages required.
+### Script
+**part2-VCF_analysis.Rmd**
+
+This Rmarkdown script can be re-run by knitting in Rstudio. The script will install all required packages.
 
 ### Output
-
 1. part2-VCF_analysis.html
 
 2. variant_count_distribution.pdf

@@ -1,0 +1,219 @@
+---
+title: "Part2 - TIGeR bioinformatics interview assignment"
+author: "Daniel Stratis"
+date: "2024-07-18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## SNP analysis
+This script summarizes and visualizes the distribution of unique SNPs for multiple VCF files.
+
+### Table of contents:
+**1. Present unique SNP calls**
+
+**2. Summarize unique SNP characteristics**
+
+**3. Create a visualization for a unique SNP characteristic**
+
+### Load packages
+
+```{r, message = FALSE, error = FALSE, warning = FALSE}
+#install packages
+package_names = c("dplyr","vcfR","ggplot2","ggpubr")
+for (package_name in package_names){
+	#if package is not installed, install it
+	if (!requireNamespace("dplyr", quietly = TRUE)){
+		install.packages("dplyr")
+	}
+}
+
+#load packages
+library(dplyr)
+library(vcfR)
+library(ggplot2)
+library(ggpubr)
+```
+
+### Load data
+
+```{r, warning = FALSE}
+#define global variables
+DIR = "C:/Users/dstra/Nextcloud/Documents/Computers/Code/Github repos/bioinformatics analyses/Variant calling/TIGeR_assignment/filtered_vcfs"
+
+#set working directory
+setwd(DIR)
+
+#load the data
+vcf_files = list.files(path = ".", pattern = '\\.vcf.gz$', full.names = TRUE)
+
+#define an empty list
+vcf_data = list()
+for (vcf_file in vcf_files){
+	#load VCF file
+	vcf = read.vcfR(vcf_file, verbose = FALSE)
+	vcf_data[[vcf_file]] = data.frame(vcf@fix)
+}
+```
+
+### 1. Present unique SNP calls
+
+```{r}
+#define an empty list and data frame
+vcf_unique = list()
+vcf_summary = data.frame()
+for (vcf_file in vcf_files){
+	#define VCF data for current sample
+	vcf_df = vcf_data[[vcf_file]]
+
+	#total number of variants
+	total_variants = nrow(vcf_df)
+
+	#number of variants passing filter
+	vcf_df = filter(vcf_df, FILTER == 'PASS')
+	passed_variants = nrow(vcf_df)
+
+	#number of variants removed
+	failed_variants = total_variants - passed_variants
+
+	#number of unique variants
+	vcf_df = vcf_df %>%
+		select(CHROM, POS, REF, ALT) %>%
+		distinct()
+	unique_variants = nrow(vcf_df)
+
+	#store the results
+	summary = data.frame(sample = vcf_file, total_variants, failed_variants, passed_variants, unique_variants)
+	vcf_summary = rbind(vcf_summary, summary)
+	vcf_unique[[vcf_file]] = vcf_df
+}
+```
+
+```{r}
+#display the results
+print(vcf_summary)
+```
+
+Sample HG005 contained 107,250 variants, of which 2,705 were removed due to low PHRED quality scores or read-depth. From the remaining 104,545 variants passing quality control, 104,545 were unique variants.
+
+Sample HG006 contained 107,882 variants, of which 2,196 were removed due to low PHRED quality scores or read-depth. From the remaining 105,686 variants passing quality control, 105,686 were unique variants.
+
+### 2. Summarize unique SNP characteristics
+#### Distribution of variant types (transitions vs transversions)
+
+```{r}
+#function to determine if a variant is a transition or transversion mutation
+classify_variant = function(ref, alt){
+  #define purines and pyrimidines
+  purines <- c("A", "G")
+  pyrimidines <- c("C", "T")
+
+  #if the variant is a transition
+  if (ref %in% purines && alt %in% purines || ref %in% pyrimidines && alt %in% pyrimidines){
+    return("transition")
+
+  #if the variant is a transversion
+  } else if (ref %in% purines && alt %in% pyrimidines || ref %in% pyrimidines && alt %in% purines){
+    return("transversion")
+  } else {
+    return("other")
+  }
+}
+```
+
+```{r}
+#define an empty data frame
+variant_types = data.frame()
+for (vcf_file in vcf_files){
+  #define VCF data for current sample
+  vcf_df = vcf_unique[[vcf_file]]
+
+  #define the function inputs
+  ref = vcf_df$REF
+  alt = vcf_df$ALT
+
+  #determine each variant type
+  variant_classes = mapply(classify_variant, ref, alt)
+
+  #count the number of transition and transversion variants
+  n_transitions = sum(variant_classes == 'transition')
+  n_transversions = sum(variant_classes == 'transversion')
+  ratio = n_transitions / n_transversions
+
+  #store the results
+  summary = data.frame(sample = vcf_file, n_transitions, n_transversions, ratio)
+	variant_types = rbind(variant_types, summary)
+}
+```
+
+```{r}
+#display the results
+print(variant_types)
+```
+
+The distribution of transition and tranversion mutations does not differ between samples. However, within a sample the number of transition and transversion SNPs differ with more than double the number of transition mutations compared to transversion SNPs.
+
+#### Distribution of variants across chromosomes
+
+```{r}
+#define an empty list
+vcf_chrom = list()
+for (vcf_file in vcf_files){
+	#define VCF data for current sample
+	vcf_df = vcf_unique[[vcf_file]]
+
+	#count the number of variants in each chromosome
+	chrom_result = vcf_df %>%
+		group_by(CHROM) %>%
+		summarize(count = n())
+
+	#store the results
+	vcf_chrom[[vcf_file]] = chrom_result
+}
+#display the result 
+str(vcf_chrom)
+```
+
+### 3. Create visualization for unique SNP characteristic
+#### Distribution of variants across chromosomes
+
+```{r}
+#define an empty list
+plots = list()
+for (vcf_file in vcf_files){
+  #define the data for current sample
+  chrom_result = vcf_chrom[[vcf_file]]
+
+  #define the order of chromosomes
+  chrom_order = c(paste0('chr', 1:22), 'chrX', 'chrY')
+  chrom_result$CHROM = factor(chrom_result$CHROM, levels = chrom_order)
+
+  #create the plot
+  plots[[vcf_file]] = ggplot(data = chrom_result, aes(x = CHROM, y = count)) +
+  geom_bar(stat = 'identity') +
+  labs(title = paste0('Distribution of variants across chromosomes\n', vcf_file),
+    x = 'chromosome',
+    y = 'variant counts') +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+}
+```
+
+```{r}
+#display the plots
+ggarrange(plotlist = plots, ncol = 1)
+```
+
+Comparing between samples shows a similar distribution of variant counts across chromosomes.
+
+Comparing variant counts between chromosome within a sample is not accurate. These counts must be normalized for chromosome size because a larger chromosomes will result in more variants.
+
+```{r, echo = FALSE}
+#save the plots as pdf
+pdf("variant_count_distribution.pdf", height = 6, width = 6)
+ggarrange(plotlist = plots, ncol = 1)
+dev.off()
+```

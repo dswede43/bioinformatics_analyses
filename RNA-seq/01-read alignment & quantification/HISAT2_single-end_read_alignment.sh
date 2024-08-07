@@ -62,8 +62,6 @@ for sample_name in ${sample_names[@]}; do
         echo "${sample_name} alignment completed successfully!"
         valid_alignments+=("$sample_name")
 
-        #delete fastq files to save space
-        find "$DIR/samples/fastq" -type f -name "*$sample_name*" -exec rm -f {} \;
     else
         #update invalid list of aligned samples
         echo "${sample_name} alignment failed!"

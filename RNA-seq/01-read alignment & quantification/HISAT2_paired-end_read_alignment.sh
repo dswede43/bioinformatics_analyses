@@ -1,75 +1,93 @@
 #!/bin/bash
 
-#Paired-end read alignment-HISAT2
+#Paired-end read alignment with HISAT2
 #---
-#This script automates the alignment of paired-end reads from FASTQ files for multiple samples
-#to a reference index and output SAM files.
+#This script automates the alignment of paired-end reads from FASTQ files to a
+#reference index using HISAT2.
 
-#directory structure:
-#---samples/
-#---<reference_index_name>/
-#---outputs/mappings/
 
 #define global variables
 DIR="/path/to/directory" #working directory
+REF_INDEX="$DIR/grch38/genome" #reference index directory
+
+#define the range of SRA sample id's
+SRA_MIN=6298258
+SRA_MAX=6298287
+
+#create required directories
+mkdir -p "$DIR/outputs/alignments"
+mkdir -p "$DIR/logs/alignments"
 
 
-#Read mapping
+#Paired-end read alignment
 #---
-#define the genome index directory
-reference_index="$DIR/grch38/genome"
+#create a list of SRA sample id's
+echo "Creating SRA identity names..."
 
-#create an array of sample names from folder names
-mapfile -t sample_names < <(find "$DIR/samples" -maxdepth 1 -type d ! -path "$DIR/samples" -exec basename {} \;)
+sample_names=()
+for ((i = SRA_MIN; i <= SRA_MAX; i++)); do
+    sample_names+=("SRR$i")
+done
 
-#create an empty list of run times
+#create empty arrays
 run_times=()
-
-#for each sample
+valid_alignments=()
+invalid_alignments=()
 for sample_name in ${sample_names[@]}; do
+    #record start time
+    start_time=$(date +%s)
 
-	#record start time
-	start_time=$(date +%s)
+    #prepare the fastq paried-end input lists
+    mapfile -t input_list \
+    < <(find "$DIR/samples/fastq" -type f -name "*$sample_name*")
 
-    #input lists of paired FASTQ files
-    #mate 1
-    mapfile -t input_list1 \
-    < <(find "$DIR/samples/$sample_name" -type f -name "*1.fastq")
-    #mate 2
-    mapfile -t input_list2 \
-    < <(find "$DIR/samples/$sample_name" -type f -name "*2.fastq")
-
-    #convert the input list to a single comma-separated string
-    #mate 1
-    input_1=""
-    for i in "${input_list1[@]}"; do
-        input_1+=",$i"
+    input_list1=""
+    input_list2=""
+    for fastq_file in ${input_list[@]}; do
+        if [[ "$fastq_file" == *"_1"* ]]; then
+            input_list1+=",$fastq_file"
+        else
+            input_list2+=",$fastq_file"
+        fi
     done
-    input_1="${input_1#,}" #remove the initial comma from the string
-    #mate 2
-    input_2=""
-    for i in "${input_list2[@]}"; do
-        input_2+=",$i"
-    done
-    input_2="${input_2#,}" #remove the initial comma from the string
+
+    #remove the initial commas
+    input_list1="${input_list1#,}"
+    input_list2="${input_list2#,}"
 
     #create an output file
-    mkdir -p $DIR/outputs/mappings/$sample_name
-    output="$DIR/outputs/mappings/$sample_name/sample$sample_name.sam"
+    output="$DIR/outputs/alignments/$sample_name.sam"
 
-	#run the alignment
+    #run the alignment
     echo "Starting alignment of sample $sample_name..."
-    hisat2 -p 8 -q --rna-strandness R -x $reference_index -1 $input_1 -2 $input_2 -S $output 2> "$DIR/outputs/mappings/$sample_name/alignment.log"
-    echo "Alignment of sample $sample_name finished!"
+    hisat2 -p 8 -q --rna-strandness R -x $REF_INDEX -1 $input_list1 -2 $input_list2 -S $output 2> "$DIR/logs/alignments/${sample_name}_alignment.log"
+
+    #logic to deal with failed alignments
+    if [ $? -eq 0 ]; then
+        #update valid list of aligned samples
+        echo "${sample_name} alignment completed successfully!"
+        valid_alignments+=("$sample_name")
+
+        #delete fastq files to save space
+        find "$DIR/samples/fastq" -type f -name "*$sample_name*" -exec rm -f {} \;
+    else
+        #update invalid list of aligned samples
+        echo "${sample_name} alignment failed!"
+        invalid_alignments+=("$sample_name")
+    fi
 
 	#record the end time
 	end_time=$(date +%s)
 
 	#store the sample runtime
 	run_time=$(( end_time - start_time ))
-	run_times+=("sample $sample_name: $(( run_time / 60 )) minutes")
-    echo "The alignment for sample $sample_name took "$(( run_time / 60 ))" minutes"
+	run_times+=("$sample_name alignment runtime: $(( run_time / 60 )) minutes")
+    echo "$sample_name alignment runtime: "$(( run_time / 60 ))" minutes"
 done
 
+#print the failed alignments
+echo "Read alignments complete!"
+echo "The following FASTQ files failed to align: ${invalid_alignments[@]}"
+
 #save the sample run times as .txt file
-printf "%s\n" "${run_times[@]}" > "$DIR/outputs/mappings/alignment_run_times.txt"
+printf "%s\n" "${run_times[@]}" > "$DIR/outputs/alignment_run_times.txt"

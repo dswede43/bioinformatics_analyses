@@ -45,15 +45,15 @@ for sra_id in ${sra_ids[@]}; do
         #update valid lists of SRA dumps
         echo "${sra_id} was successfully converted into FASTQ!"
         valid_sra_dumps+=("$sra_id")
+
+		#move the SRA file
+		mv "$DIR/samples/$sra_id/"*.sra "$DIR/samples/sra/"
+		rm -rf "$DIR/samples/$sra_id"
     else
         #update the invalid list of SRA dumps
         echo "${sra_id} failed to convert into FASTQ!"
         invalid_sra_dumps+=("$sra_id")
     fi
-
-    #move the SRA file
-    mv "$DIR/samples/$sra_id/"*.sra "$DIR/samples/sra/"
-    rm -rf "$DIR/samples/$sra_id"
 done
 
 #print the failed FASTQ conversions

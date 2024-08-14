@@ -33,7 +33,7 @@ There are two main portions to this pipeline:
 1. Gene module creation with WGCNA
 2. Machine learning classifiers
 
-### 1. WGNCA
+### 1. WGCNA
 This portion of the pipeline attempts to create an initial subset of genes that are associated with the trait or biological condition of interest
 (in this case T-cells). It does this through creating modules/clusters of genes using
 [WGCNA](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-559) and correlates them to the trait of interest. Hub genes from
@@ -49,6 +49,21 @@ The figure below provides an overall summary of how the scripts were used along 
 ![alt text](https://github.com/dswede43/bioinformatics_analyses/blob/b5b87813d602f4981f243eb30b61d8a0b1f20f32/Machine%20learning/Immune%20cell%20classification/analysis_pipeline.JPG)
 
 ## Results
+The initial transcriptome dataset contained read counts 58,174 genes. After filtering out genes with low read counts (ie. genes with an average TPM
+less than 10), this resulted in 10,247 genes to be used in WGCNA.
+
+### 1. WGCNA
+WGCNA clustered the 10,247 genes into 16 different modules as shown by the dendrogram below.
+
+![alt text](https://github.com/dswede43/bioinformatics_analyses/blob/2fd8490619a38ab629bad228ce3035503553c4f3/Machine%20learning/Immune%20cell%20classification/Visualizations/module_dendrogram.pdf)
+
+Of these 16 gene modules, 10 of them significantly correlated (FDR adjusted p-value < 0.001) with the trait of interest (T-cells).
+
+![alt text](https://github.com/dswede43/bioinformatics_analyses/blob/2fd8490619a38ab629bad228ce3035503553c4f3/Machine%20learning/Immune%20cell%20classification/Visualizations/ME_trait_cor_heatmap.pdf)
+
+From these 10 modules, 826 genes were identified as hub genes and used as the feature variables for the machine learning models.
+
+### 2. Machine learning
 
 
 ## Conclusion

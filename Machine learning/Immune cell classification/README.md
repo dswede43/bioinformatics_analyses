@@ -40,7 +40,7 @@ This portion of the pipeline attempts to create an initial subset of genes that 
 these identified gene modules are then extracted as features to be used in the machine learning models.
 
 ### 2. Machine learning
-Various machine learning models including LASSO logistic regression, random forest classifier, and adaptive boost classifier are trained and tested
+Various machine learning models including **LASSO logistic regression**, **random forest classifier**, and **adaptive boost classifier** are trained and tested
 to obtain the final subset of genes that are significantly contributing to the prediction/classification of T-cells. This subset of genes can be further
 analyzed for their biological functions using various enrichment analyses.
 
@@ -53,17 +53,48 @@ The initial transcriptome dataset contained read counts 58,174 genes. After filt
 less than 10), this resulted in 10,247 genes to be used in WGCNA.
 
 ### 1. WGCNA
-WGCNA clustered the 10,247 genes into 16 different modules as shown by the dendrogram below.
+WGCNA clustered the 10,247 genes into 16 different modules as shown by the dendrogram.
 
-![alt text](https://github.com/dswede43/bioinformatics_analyses/blob/2fd8490619a38ab629bad228ce3035503553c4f3/Machine%20learning/Immune%20cell%20classification/Visualizations/module_dendrogram.pdf)
+![alt text](https://github.com/dswede43/bioinformatics_analyses/blob/10d8da80fe9df1cb7aa118e985a0cf9a2af34419/Machine%20learning/Immune%20cell%20classification/Visualizations/module_dendrogram.jpg)
 
 Of these 16 gene modules, 10 of them significantly correlated (FDR adjusted p-value < 0.001) with the trait of interest (T-cells).
 
-![alt text](https://github.com/dswede43/bioinformatics_analyses/blob/2fd8490619a38ab629bad228ce3035503553c4f3/Machine%20learning/Immune%20cell%20classification/Visualizations/ME_trait_cor_heatmap.pdf)
+![alt text](https://github.com/dswede43/bioinformatics_analyses/blob/10d8da80fe9df1cb7aa118e985a0cf9a2af34419/Machine%20learning/Immune%20cell%20classification/Visualizations/ME_trait_cor_heatmap.jpg)
 
 From these 10 modules, 826 genes were identified as hub genes and used as the feature variables for the machine learning models.
 
 ### 2. Machine learning
+#### Data distribution
+The distribution of TPM read counts for these 826 genes show overlapping but distinct distributions between T-cell and non T-cell samples.
 
+![alt text](https://github.com/dswede43/bioinformatics_analyses/blob/10d8da80fe9df1cb7aa118e985a0cf9a2af34419/Machine%20learning/Immune%20cell%20classification/Visualizations/gene_expression_distribution.jpg)
+
+This difference in distributions between immune cell types is further highlighted when plotting the data using the first two principal components (PCs).
+
+![alt text](https://github.com/dswede43/bioinformatics_analyses/blob/10d8da80fe9df1cb7aa118e985a0cf9a2af34419/Machine%20learning/Immune%20cell%20classification/Visualizations/PCA_gene_expression.jpg)
+
+#### Model training
+1. The LASSO logistic regression model resulted in 86 features/genes being used to make T-cell predictions.
+2. The random forest classifier model resulted in 114 features/genes being used to make T-cell predictions.
+3. The adaptive boost classifier model resulted in 6 features/genes being used to make T-cell predictions.
+
+#### Model testing
+Model testing reveals 100% classification accuracy for each model when predicting the immune cell type of an RNA-seq sample. These results are shown
+by the confusion matrices for each model.
+
+![alt text](https://github.com/dswede43/bioinformatics_analyses/blob/10d8da80fe9df1cb7aa118e985a0cf9a2af34419/Machine%20learning/Immune%20cell%20classification/Visualizations/confusion_matrices.jpg)
+
+Additionally, the Area Under Curve (AUC) scores for ROC curves of each model are 1, indicating perfect classification performance. Specifically,
+each model is able to perfectly distinguish between T-cell and non T-cells without any errors given our testing dataset.
+
+#### Model decision boundaries
+Plotting the first two principal components of the testing data along with the decision boundary for each model highlights the accuracy of each models
+predictive capabilities.
+
+![alt text](https://github.com/dswede43/bioinformatics_analyses/blob/10d8da80fe9df1cb7aa118e985a0cf9a2af34419/Machine%20learning/Immune%20cell%20classification/Visualizations/model_decision_boundaries.jpg)
 
 ## Conclusion
+The three machine learning models LASSO logistic regression, random forest classifier, and adaptive boost classifier used 86, 114, and 6 genes
+respectively to make their classifications of immune T-cells. This resulted in a subset of 162 unique genes that can be used in downstream analyses
+to enrich their biological functions. This will provide insight into genes that significantly contribute to the gene expression modulations that
+determine a T-cell.

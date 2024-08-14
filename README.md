@@ -12,6 +12,9 @@ Scripts to obtain open-source data.
 ### Functions
 My custom functions.
 
+### Machine learning
+Various projects that utilize machine learning methods to predict a clinical variable using gene expression data.
+
 ### RNA-seq
 Pipeline of analysis to identify gene expression modulations using bulk RNA-seq experiments.
 

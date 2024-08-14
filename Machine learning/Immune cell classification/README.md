@@ -37,7 +37,7 @@ There are two main portions to this pipeline:
 This portion of the pipeline attempts to create an initial subset of genes that are associated with the trait or biological condition of interest
 (in this case T-cells). It does this through creating modules/clusters of genes using
 [WGCNA](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-559) and correlates them to the trait of interest. Hub genes from
-these identified gene modules/clusters are then extracted as features to be used in the machine learning models.
+these identified gene modules are then extracted as features to be used in the machine learning models.
 
 ### 2. Machine learning
 Various machine learning models including LASSO logistic regression, random forest classifier, and adaptive boost classifier are trained and tested
@@ -46,7 +46,7 @@ analyzed for their biological functions using various enrichment analyses.
 
 The figure below provides an overall summary of how the scripts were used along with their data inputs and outputs.
 
-[!alt text](https://github.com/dswede43/bioinformatics_analyses/blob/b5b87813d602f4981f243eb30b61d8a0b1f20f32/Machine%20learning/Immune%20cell%20classification/analysis_pipeline.JPG)
+![alt text](https://github.com/dswede43/bioinformatics_analyses/blob/b5b87813d602f4981f243eb30b61d8a0b1f20f32/Machine%20learning/Immune%20cell%20classification/analysis_pipeline.JPG)
 
 ## Results
 

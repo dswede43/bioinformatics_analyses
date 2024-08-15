@@ -1,6 +1,6 @@
-#App UI - Alliance Genome data mining app
+#Query keywords page UI - Alliance Genome data mining app
 #---
-#Script to run the app UI via Streamlit.
+#Script to run the query keywords page via Streamlit.
 
 #import packages
 from PIL import Image
@@ -21,20 +21,20 @@ SPECIES = ['Homo sapiens',
            'Xenopus tropicalis']
 
 
-#App UI
+#Query keywords page UI
 #---
 def main():
     #set page customizations
     im = Image.open("static/favicon-16x16.png")
     st.set_page_config(
-        page_title = "Data Mining",
+        page_title = "Query Keywords",
         page_icon = im)
     
     #set the web app title
-    st.header('Alliance Genome Data Mining', divider = 'blue')
+    st.header('Query Keywords', divider = 'blue')
     
     #add text to explain the app
-    st.write("This web application is used to query the [Alliance Genome of Resources consortium](https://www.alliancegenome.org/) for biologically relevant keywords and returns lists of genes with functions associated to those keywords. Data is obtained through API queries with [Alliance Genome's API](https://www.alliancegenome.org/swagger-ui/). Source code can be found on [Github](https://github.com/dswede43/bioinformatics_analyses/tree/main/Alliance%20Genome%20data%20mining).")
+    st.write("This page is used to query the [Alliance Genome of Resources consortium](https://www.alliancegenome.org/) for biologically relevant keywords and returns lists of genes with functions associated to those keywords.")
     st.write("Please input a comma-separated list of keywords below!")
     st.write("**NOTE: the more specific the keyword is, the less genes that are associated and results in shorter query times.**")
     

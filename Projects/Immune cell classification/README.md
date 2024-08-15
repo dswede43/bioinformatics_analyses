@@ -1,4 +1,4 @@
-# Classifying immune T-cell types
+# Gene Discovery with Machine Learning Classifiers of Immune T-cells
 
 ## Introduction
 Transcriptome data typically result in large datasets containing tens of thousands of genes. The goal of analyzing transcriptome datasets are too find
@@ -27,7 +27,7 @@ healthy Singaporean individuals. Cell types include B/T cells, Dendiritic Cells 
 cells, and Peripheral Blood Mononuclear Cells (PBMCs). To simplify predictions/classifications, I have grouped these samples into two immune types:
 T-cells (58 samples) and non T-cells (69 samples).
 
-## Pipeline of analysis
+## Pipeline of Analysis
 There are two main portions to this pipeline:
 
 1. Gene module creation with WGCNA
@@ -39,7 +39,7 @@ This portion of the pipeline attempts to create an initial subset of genes that 
 [WGCNA](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-9-559) and correlates them to the trait of interest. Hub genes from
 these identified gene modules are then extracted as features to be used in the machine learning models.
 
-### 2. Machine learning
+### 2. Machine Learning
 Various machine learning models including **LASSO logistic regression**, **random forest classifier**, and **adaptive boost classifier** are trained and tested
 to obtain the final subset of genes that are significantly contributing to the prediction/classification of T-cells. This subset of genes can be further
 analyzed for their biological functions using various enrichment analyses.
@@ -63,7 +63,7 @@ Of these 16 gene modules, **10** of them significantly correlated (FDR adjusted 
 
 From these 10 modules, 826 genes were identified as hub genes and used as the feature variables for the machine learning models.
 
-### 2. Machine learning
+### 2. Machine Learning
 #### Data distribution
 The distribution of TPM read counts for these **826 genes** show overlapping but distinct distributions between T-cell and non T-cell samples.
 
@@ -73,12 +73,12 @@ This difference in distributions between immune cell types is further highlighte
 
 ![alt text](https://github.com/dswede43/bioinformatics_analyses/blob/10d8da80fe9df1cb7aa118e985a0cf9a2af34419/Machine%20learning/Immune%20cell%20classification/Visualizations/PCA_gene_expression.jpg)
 
-#### Model training
+#### Model Training
 1. The **LASSO logistic regression model** resulted in **86 features/genes** being used to make T-cell predictions.
 2. The **random forest classifier model** resulted in **114 features/genes being** used to make T-cell predictions.
 3. The **adaptive boost classifier model** resulted in **6 features/genes** being used to make T-cell predictions.
 
-#### Model testing
+#### Model Testing
 Model testing reveals **100% classification** accuracy for each model when predicting the immune cell type of an RNA-seq sample. These results are shown
 by the confusion matrices for each model.
 
@@ -89,7 +89,7 @@ each model is able to perfectly distinguish between T-cell and non T-cells witho
 
 ![alt text](https://github.com/dswede43/bioinformatics_analyses/blob/93a79cb4cbf654d4b9efe94cc3f9ca41a44d14dc/Machine%20learning/Immune%20cell%20classification/Visualizations/ROC_curves.jpg)
 
-#### Model decision boundaries
+#### Model Decision Boundaries
 Plotting the first two principal components of the testing data along with the decision boundary for each model highlights the accuracy of each models
 predictive capabilities.
 

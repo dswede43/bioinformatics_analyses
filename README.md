@@ -2,27 +2,23 @@
 My code to run various bioinformatics analyses, pipelines, and projects.
 
 ## Directories
-
-### Alliance Genome Data Mining
-Web application to query the Alliance Genome of Resources consortium for various gene enrichment analyses.
-
-### Data
+### Data downloading
 Scripts to obtain open-source data.
 
 ### Functions
-My custom functions.
+My custom functions for various custom data processing steps.
 
-### Machine learning
-Various projects that utilize machine learning methods to predict a clinical variable using gene expression data.
+### Genome
+Saved scripts to analyze genomic datasets.
 
-### RNA-seq
-Pipeline of analysis to identify gene expression modulations using bulk RNA-seq experiments.
+### Projects
+Various projects that analyze omic data using a bioinformatics approach.
+
+### Proteome
+Saved scripts to analyze proteomic datasets.
 
 ### Simulations
-Various simulations of bioinformatics data.
+Sripts to simulate various types of bioinformatics data.
 
-### Variant calling
-Workflow to identify base pair variations through variant calling analysis.
-
-### scRNA-seq
-Pipeine of analysis to identify single-cell gene expression modulations using single-cell RNA-seq experiments.
+### Transcriptome
+Saved scripts to analyze various transcriptome datasets including bulk and single-cell RNA-seq.

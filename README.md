@@ -1,5 +1,5 @@
 # Bioinformatics Analyses
-![alt text](https://github.com/dswede43/bioinformatics_analyses/blob/0a9f77d1facf4ceceff624473c23a3707d9163db/wildflowers.jpg)
+![alt text](./wildflowers.jpg)
 
 My code to run various bioinformatics analyses, pipelines, and projects.
 

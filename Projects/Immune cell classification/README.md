@@ -46,7 +46,7 @@ analyzed for their biological functions using various enrichment analyses.
 
 The figure below provides an overall summary of how the scripts were used along with their data inputs and outputs.
 
-![alt text](./Visualizations/analysis_pipeline.jpg)
+![alt text](./analysis_pipeline.jpg)
 
 ## Results
 The initial transcriptome dataset contained read counts **58,174 genes**. After filtering out genes with low read counts (ie. genes with an average TPM

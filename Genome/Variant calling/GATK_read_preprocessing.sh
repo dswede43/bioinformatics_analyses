@@ -16,7 +16,7 @@
 #---outputs/mappings
 
 #define global variables
-DIR="/media/sf_VM_share/RNA-seq_data/1000_genomes_project"
+DIR="/path/to/directory"
 
 #start the GATK docker container
 docker run -v ${DIR}:/gatk/my_data -it broadinstitute/gatk:latest

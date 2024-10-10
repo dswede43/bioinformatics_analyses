@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Read alignmen - BWA (Burrow-Wheeler Aligner)
+#Read alignment - BWA (Burrow-Wheeler Aligner)
 #---
 #This script automates the alignment of reads to a reference genome using BWA-MEM.
 
@@ -9,7 +9,6 @@
 #---
 #1. Reference genome indexing
 #2. Read alignment to reference genome
-#3. Compress outputs to .BAM and sort by coordinate
 
 #define global variables
 DIR="/path/to/directory" #working directory
@@ -39,7 +38,6 @@ fi
 mapfile -t sample_names < <(find "${DIR}/samples" -maxdepth 1 -type d ! -path "${DIR}/samples" -exec basename {} \;)
 
 #create empty arrays
-run_times=()
 valid_files=()
 invalid_files=()
 for sample_name in ${sample_names[@]}; do
@@ -133,25 +131,3 @@ done
 #print the failed samples
 echo "Read alignment has completed!"
 echo "The following samples failed: ${invalid_files[@]}"
-
-
-#3. Compress outputs to .BAM and sort by coordinate
-#---
-for sample_name in ${sample_names[@]}; do
-	#define the input SAM file
-	sam_file="${DIR}/outputs/alignments/${sample_name}.sam"
-
-	#define the output BAM file
-	bam_file="${DIR}/outputs/alignments/${sample_name}.bam"
-
-	#convert .SAM to .BAM
-	echo "Compressing to ${sample_name} to .BAM..."
-	samtools view -Sb $sam_file > $bam_file
-	echo "Compression to .BAM complete!"
-
-	#sort the .BAM file
-	sorted_bam_file="${DIR}/outputs/alignments/${sample_name}_sorted.bam"
-	echo "Sorting coordinates for ${sample_name}..."
-	samtools sort $bam_file -o $sorted_bam_file
-	echo "Sorting complete!"
-done

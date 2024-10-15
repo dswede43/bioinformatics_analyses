@@ -2,7 +2,18 @@
 
 #Alignment quality control - QualiMap (multi-BAM QC)
 #---
-#This script automates the alignment of reads to a reference genome using BWA-MEM.
+#This script automates the quality control of read alignment for multiple BAM files.
+
+
+#Dependencies
+#---
+#The main argument required is the configuration file describing input data (-d).
+#This has to be a 2- or 3-column tab-delimted file. The first column should contain
+#the sample name and the second column should contain either the absolute or relative
+#path to the results of BAM QC analysis or path to the BAM file (if -r mode is activated).
+#Additionally the third optional column can provide the condition of the sample. This is an
+#optional column. However, if conditions are available they should be provided for each sample.
+
 
 #define global variables
 DIR="/path/to/directory" #working directory
@@ -12,19 +23,19 @@ mkdir -p "$DIR/outputs/quality_control/qualimap"
 mkdir -p "$DIR/logs/quality_control"
 
 
-#Multi-BAM alignment quality control
+#Multi-sample alignment quality control
 #---
 #define the config file
 config_file="${DIR}/outputs/quality_control/qualimap/multi-bamQC_config.txt"
 
-#define output directory
+#define output directory and file
 output_dir="${DIR}/outputs/quality_control/qualimap"
 
 #record start time
 start_time=$(date +%s)
 
 #run the alignment quality control
-qualimap multi-bamqc -d $config_file -outdir $output_dir -r \
+qualimap multi-bamqc -d $config_file -outdir $output_dir -r --java-mem-size=8G \
 2> "${DIR}/logs/quality_control/multi-bamQC.log"
 
 #record the end time

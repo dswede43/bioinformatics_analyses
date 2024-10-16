@@ -16,10 +16,10 @@ PAIRED=true #paired-end reads?
 
 #create required directories
 mkdir -p "$DIR/outputs/alignments"
-mkdir -p "$DIR/logs/read alignment"
+mkdir -p "$DIR/logs/alignments"
 
 
-#1. Reference genome indexing
+#1. Reference genome indexing for BWA
 #---
 #define the reference index FASTA file
 ref="${DIR}/OmykA1.1/GCF_013265735.2/GCF_013265735.2_USDA_OmykA_1.1_genomic.fna"
@@ -74,7 +74,7 @@ for sample_name in ${sample_names[@]}; do
 		#run the alignment
 		echo "Starting alignment for sample ${sample_name}..."
 		bwa mem -t 8 -R "@RG\tID:${sample_name}\tPL:ILLUMINA\tSM:${sample_name}" $ref $input_1 $input_2 > $output \
-		2> "${DIR}/logs/read alignment/bwa-mem-${sample_name}.log"
+		2> "${DIR}/logs/alignments/bwa-mem-${sample_name}.log"
 
 		#logic to deal with failed files
 		if [ $? -eq 0 ]; then
@@ -105,7 +105,7 @@ for sample_name in ${sample_names[@]}; do
 		#run the alignment
 		echo "Starting alignment for sample ${sample_name}..."
 		bwa mem -t 8 -R "@RG\tID:${sample_name}\tPL:ILLUMINA\tSM:${sample_name}" $ref $input > $output \
-		2> "${DIR}/logs/read alignment/bwa-mem-${sample_name}.log"
+		2> "${DIR}/logs/alignments/bwa-mem-${sample_name}.log"
 
 		#logic to deal with failed files
 		if [ $? -eq 0 ]; then
@@ -119,6 +119,18 @@ for sample_name in ${sample_names[@]}; do
 		fi
 	fi
 
+	#define the input SAM file
+	sam_file="${DIR}/outputs/alignments/${sample_name}.sam"
+
+	#define the output BAM file
+	bam_file="${DIR}/outputs/alignments/${sample_name}.bam"
+
+	#convert .SAM to .BAM
+	echo "Compressing sample ${sample_name} to .BAM..."
+	samtools view -Sb $sam_file > $bam_file \
+	2> "${DIR}/logs/alignments/samtools_view-${sample_name}.log"
+	echo "Compression to .BAM complete!"
+
 	#record end time
 	end_time=$(date +%s)
 
@@ -126,6 +138,10 @@ for sample_name in ${sample_names[@]}; do
 	run_time=$(( end_time - start_time))
 	minutes=$(( run_time / 60 ))
     echo "Sample ${sample_name} took ${minutes} minutes"
+
+	#remove .SAM file to save space
+	echo "Deleting the .SAM file to save space..."
+	rm -rfv $sam_file
 done
 
 #print the failed samples

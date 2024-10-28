@@ -1,0 +1,283 @@
+BLASTN 2.16.0+
+
+
+Reference: Zheng Zhang, Scott Schwartz, Lukas Wagner, and Webb
+Miller (2000), "A greedy algorithm for aligning DNA sequences", J
+Comput Biol 2000; 7(1-2):203-14.
+
+
+
+Database: /media/sf_VM_share/RNA-
+seq_data/BLAST/GCF_000004195.4_UCB_Xtro_10.0_genomic.fna
+           167 sequences; 1,451,301,209 total letters
+
+
+
+Query= NM_204089.1 Xenopus tropicalis hematopoietically expressed homeobox
+(hhex), mRNA
+
+Length=2088
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+NC_030683.2 Xenopus tropicalis strain Nigerian chromosome 7, UCB_...  2662    0.0  
+NC_030679.2 Xenopus tropicalis strain Nigerian chromosome 3, UCB_...  67.6    1e-08
+NC_030684.2 Xenopus tropicalis strain Nigerian chromosome 8, UCB_...  65.8    5e-08
+NC_030682.2 Xenopus tropicalis strain Nigerian chromosome 6, UCB_...  63.9    2e-07
+NC_030681.2 Xenopus tropicalis strain Nigerian chromosome 5, UCB_...  52.8    4e-04
+
+
+>NC_030683.2 Xenopus tropicalis strain Nigerian chromosome 7, 
+UCB_Xtro_10.0, whole genome shotgun sequence
+Length=133565930
+
+ Score = 2662 bits (1441),  Expect = 0.0
+ Identities = 1449/1453 (99%), Gaps = 0/1453 (0%)
+ Strand=Plus/Minus
+
+Query  635       AGGAAAACCCACAGGGAAATAAGAAAGACGAAACTGAAAGTCTAGAGAATATCTGCGAAG  694
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25592934  AGGAAAACCCACAGGGAAATAAGAAAGACGAAACTGAAAGTCTAGAGAATATCTGCGAAG  25592875
+
+Query  695       AGAGTCAGGAGAGGTGTTTGAGTGCTGAGCAGAAGAGCAGAGAGTCCTCCTTGGATGAAC  754
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25592874  AGAGTCAGGAGAGGTGTTTGAGTGCTGAGCAGAAGAGCAGAGAGTCCTCCTTGGATGAAC  25592815
+
+Query  755       CCACCTCATCGCCCACCTCCCAAGAGACTCTGGATTCAGAGGTGTCCGATGATTCCGACC  814
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25592814  CCACCTCATCGCCCACCTCCCAAGAGACTCTGGATTCAGAGGTGTCCGATGATTCCGACC  25592755
+
+Query  815       AGGAGGTGGACATTGAAGGAGACAAAGGATTTTACAACTGTGCACATTAACTGCTGCTCA  874
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25592754  AGGAGGTGGACATTGAAGGAGACAAAGGATTTTACAACTGTGCACATTAACTGCTGCTCA  25592695
+
+Query  875       GTAAGAATGGACCTCTCTTCAGCTTGCACTTTAACAGAAGCTGGACCTAGCTCCCTGGTA  934
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25592694  GTAAGAATGGACCTCTCTTCAGCTTGCACTTTAACAGAAGCTGGACCTAGCTCCCTGGTA  25592635
+
+Query  935       GCCTGACTTGGGTTAAGCCAGTGGCTGTCGGACTTTCTCAGTTCAAGCCCCCACTGGAGT  994
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25592634  GCCTGACTTGGGTTAAGCCAGTGGCTGTCGGACTTTCTCAGTTCAAGCCCCCACTGGAGT  25592575
+
+Query  995       TCCAACCTTTGTTCAGGGCCCCCTCAGCTCATAACAAGGAAAGCAGCGGTGTACCAGTCA  1054
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25592574  TCCAACCTTTGTTCAGGGCCCCCTCAGCTCATAACAAGGAAAGCAGCGGTGTACCAGTCA  25592515
+
+Query  1055      GAGCAGAAAATACATTTTTATCCCAAATCTTATCCTAATTAACCTTCAAGTTGGAGGTAT  1114
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25592514  GAGCAGAAAATACATTTTTATCCCAAATCTTATCCTAATTAACCTTCAAGTTGGAGGTAT  25592455
+
+Query  1115      CTAGGAGAGCAAGTAGGCATTCTCCTCAAATTTCATTCTTTATTGACCTTTCAGGTGTAT  1174
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25592454  CTAGGAGAGCAAGTAGGCATTCTCCTCAAATTTCATTCTTTATTGACCTTTCAGGTGTAT  25592395
+
+Query  1175      TTAGGAGAGCAAATAGGCATCCTCCCTAATTCTCACCCTAACTGGCAAGCTTCTATCCCA  1234
+                 |||||||||||||||||||||||| |||||||||||||||||||||||||||||||||||
+Sbjct  25592394  TTAGGAGAGCAAATAGGCATCCTCTCTAATTCTCACCCTAACTGGCAAGCTTCTATCCCA  25592335
+
+Query  1235      CAGTGGCACAGTTTGGGAACCACTGAGTTAAGGGGATGGAAAGGACATTTTATCAATGTA  1294
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||| ||||
+Sbjct  25592334  CAGTGGCACAGTTTGGGAACCACTGAGTTAAGGGGATGGAAAGGACATTTTATCAGTGTA  25592275
+
+Query  1295      TATCAAGGTTTAGTTTGATCATGGTCAAAGTTCTATTTCAGATTGTGTATTTATCATAAA  1354
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25592274  TATCAAGGTTTAGTTTGATCATGGTCAAAGTTCTATTTCAGATTGTGTATTTATCATAAA  25592215
+
+Query  1355      CGGTGTTACTGTAATATTTTGCCTAATTGCACAATACCACTAATATTCCCCAAGTGCCTT  1414
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25592214  CGGTGTTACTGTAATATTTTGCCTAATTGCACAATACCACTAATATTCCCCAAGTGCCTT  25592155
+
+Query  1415      TTTTATACAGGTAGATCAGGAATCTCATTGTGTAAGAAAGCTCAGATTTTATTGACACTC  1474
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25592154  TTTTATACAGGTAGATCAGGAATCTCATTGTGTAAGAAAGCTCAGATTTTATTGACACTC  25592095
+
+Query  1475      AAAAATGAAGGAAGTTTTGTGTATAAATTCCAGTGCATCTCAGGTTGGGGTGGCCAGGCC  1534
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25592094  AAAAATGAAGGAAGTTTTGTGTATAAATTCCAGTGCATCTCAGGTTGGGGTGGCCAGGCC  25592035
+
+Query  1535      TATTGTTTGAGTGGCTTGGGAATTTCCCCTATGTACACAAGCAAACTGTCAATCATGGAG  1594
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25592034  TATTGTTTGAGTGGCTTGGGAATTTCCCCTATGTACACAAGCAAACTGTCAATCATGGAG  25591975
+
+Query  1595      GGTGCACAGCCAATGAGGTCGCAAACAGGCAACCCATTTCACGCGGACCATATGGACAGC  1654
+                 ||||||||||||||||||||||||||||||||||||||||||| ||||||||||||||||
+Sbjct  25591974  GGTGCACAGCCAATGAGGTCGCAAACAGGCAACCCATTTCACGTGGACCATATGGACAGC  25591915
+
+Query  1655      CCTTTTATGGGGTACAATTCATATTCCCTTATTGCTCCATTGTCTATAAATGACTTTAGG  1714
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25591914  CCTTTTATGGGGTACAATTCATATTCCCTTATTGCTCCATTGTCTATAAATGACTTTAGG  25591855
+
+Query  1715      CTTACATAACTATATTGTTGGGTCTATTTGGAATGGAAAAATAAATATTAAAAGAAGCTT  1774
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25591854  CTTACATAACTATATTGTTGGGTCTATTTGGAATGGAAAAATAAATATTAAAAGAAGCTT  25591795
+
+Query  1775      AATTTAGCAATAATTAAAATTTTACATATTTGTACATAATTCTTTTTGTAAATCCCAAGT  1834
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25591794  AATTTAGCAATAATTAAAATTTTACATATTTGTACATAATTCTTTTTGTAAATCCCAAGT  25591735
+
+Query  1835      GCATTGAGAAAATTGCCAAATAATGAtttttttttttACAAAGGGAGATCTCAAATCAAA  1894
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25591734  GCATTGAGAAAATTGCCAAATAATGATTTTTTTTTTTACAAAGGGAGATCTCAAATCAAA  25591675
+
+Query  1895      TGTTATTATATGAtttttttATTGTGAATATGTAATATATACATTGTTCTTTTTGTATAA  1954
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25591674  TGTTATTATATGATTTTTTTATTGTGAATATGTAATATATACATTGTTCTTTTTGTATAA  25591615
+
+Query  1955      TGCGTGTGTTGTTGTTATACCTCAGGTTGTTTATATGTCTTGTAAATATATTTTCATCAT  2014
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25591614  TGCGTGTGTTGTTGTTATACCTCAGGTTGTTTATATGTCTTGTAAATATATTTTCATCAT  25591555
+
+Query  2015      CCAAGCAAAAAACATATTTAATTTTGTGTCTTaaaaaaacagtggaataaaagaaaaaaa  2074
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25591554  CCAAGCAAAAAACATATTTAATTTTGTGTCTTAAAAAAACAGTGGAATAAAAGAAAAAAA  25591495
+
+Query  2075      tggatacacaaaa  2087
+                 |||||||||| ||
+Sbjct  25591494  TGGATACACACAA  25591482
+
+
+ Score = 747 bits (404),  Expect = 0.0
+ Identities = 408/410 (99%), Gaps = 0/410 (0%)
+ Strand=Plus/Minus
+
+Query  1         ATTACAGCAGGATCCGAGTGTGGGAGAGAGAGAATAGCCATGCAGTACCAGCACCCCAGC  60
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25602685  ATTACAGCAGGATCCGAGTGTGGGAGAGAGAGAATAGCCATGCAGTACCAGCACCCCAGC  25602626
+
+Query  61        TCCTCAGCCCTGGGGCTCAGTGTCCCCCTGTACGCACCCACCCCTCTGCAGCCAGTGCAC  120
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25602625  TCCTCAGCCCTGGGGCTCAGTGTCCCCCTGTACGCACCCACCCCTCTGCAGCCAGTGCAC  25602566
+
+Query  121       CCAACTCCCTTCTACATTGATGATATCCTGGGAAGGAGCAGCGCCTCTAATGGGACCCCA  180
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25602565  CCAACTCCCTTCTACATTGATGATATCCTGGGAAGGAGCAGCGCCTCTAATGGGACCCCA  25602506
+
+Query  181       GCCTTACCCACCCCAACCCTGCCATCGCCCAACTCTTCCTTCACCAGCCTGGTGGCTACC  240
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25602505  GCCTTACCCACCCCAACCCTGCCATCGCCCAACTCTTCCTTCACCAGCCTGGTGGCTACC  25602446
+
+Query  241       TACAGGACTCCCATCTATGAGCCTACTCCCATTCACCCTGCCTTCACCCACCCCGGGGCA  300
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25602445  TACAGGACTCCCATCTATGAGCCTACTCCCATTCACCCTGCCTTCACCCACCCCGGGGCA  25602386
+
+Query  301       GCCCTGGCAGCTTCCTATGGAGCCAGCACCTATGCCAACCCTCTGTACCCCTTCTCCAGG  360
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25602385  GCCCTGGCAGCTTCCTATGGAGCCAGCACCTATGCCAACCCTCTGTACCCCTTCTCCAGG  25602326
+
+Query  361       CCGGTCAGCGAGTACACCCATGCCCTCATCCGGCACGACACCCTGGGCAA  410
+                 ||||||||||||||||||||||||||||||||||||||| ||||||| ||
+Sbjct  25602325  CCGGTCAGCGAGTACACCCATGCCCTCATCCGGCACGACTCCCTGGGTAA  25602276
+
+
+ Score = 337 bits (182),  Expect = 9e-90
+ Identities = 182/182 (100%), Gaps = 0/182 (0%)
+ Strand=Plus/Minus
+
+Query  406       GGCAAACCCTTGCTATGGAGCCCCTTCATCCAGAGGCCTCTTCACAAGCGGAAAGGCGGC  465
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25597034  GGCAAACCCTTGCTATGGAGCCCCTTCATCCAGAGGCCTCTTCACAAGCGGAAAGGCGGC  25596975
+
+Query  466       CAAGTGCGGTTTTCAAACGATCAGACCATCGAATTAGAGAAAAAGTTTGAGACACAAAAA  525
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25596974  CAAGTGCGGTTTTCAAACGATCAGACCATCGAATTAGAGAAAAAGTTTGAGACACAAAAA  25596915
+
+Query  526       TATTTATCGCCCCCGGAAAGGAAACGCCTGGCTAAAATGCTTCAGCTCAGCGAGAGACAG  585
+                 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25596914  TATTTATCGCCCCCGGAAAGGAAACGCCTGGCTAAAATGCTTCAGCTCAGCGAGAGACAG  25596855
+
+Query  586       GT  587
+                 ||
+Sbjct  25596854  GT  25596853
+
+
+ Score = 102 bits (55),  Expect = 4e-19
+ Identities = 55/55 (100%), Gaps = 0/55 (0%)
+ Strand=Plus/Minus
+
+Query  583       CAGGTCAAAACCTGGTTCCAGAACAGAAGAGCCAAATGGAGGCGTCTCAAGCAGG  637
+                 |||||||||||||||||||||||||||||||||||||||||||||||||||||||
+Sbjct  25595549  CAGGTCAAAACCTGGTTCCAGAACAGAAGAGCCAAATGGAGGCGTCTCAAGCAGG  25595495
+
+
+>NC_030679.2 Xenopus tropicalis strain Nigerian chromosome 3, 
+UCB_Xtro_10.0, whole genome shotgun sequence
+Length=153873357
+
+ Score = 67.6 bits (36),  Expect = 1e-08
+ Identities = 46/51 (90%), Gaps = 0/51 (0%)
+ Strand=Plus/Plus
+
+Query  1058       CAGAAAATACATTTTTATCCCAAATCTTATCCTAATTAACCTTCAAGTTGG  1108
+                  ||| |||||||| || | ||||||||||||||||||||||||||||| |||
+Sbjct  112910390  CAGCAAATACATATTCACCCCAAATCTTATCCTAATTAACCTTCAAGCTGG  112910440
+
+
+ Score = 54.7 bits (29),  Expect = 1e-04
+ Identities = 31/32 (97%), Gaps = 0/32 (0%)
+ Strand=Plus/Plus
+
+Query  1158      TGACCTTTCAGGTGTATTTAGGAGAGCAAATA  1189
+                 || |||||||||||||||||||||||||||||
+Sbjct  16410459  TGCCCTTTCAGGTGTATTTAGGAGAGCAAATA  16410490
+
+
+>NC_030684.2 Xenopus tropicalis strain Nigerian chromosome 8, 
+UCB_Xtro_10.0, whole genome shotgun sequence
+Length=147241510
+
+ Score = 65.8 bits (35),  Expect = 5e-08
+ Identities = 45/50 (90%), Gaps = 0/50 (0%)
+ Strand=Plus/Minus
+
+Query  1163       TTTCAGGTGTATTTAGGAGAGCAAATAGGCATCCTCCCTAATTCTCACCC  1212
+                  |||||||||||||||||||||||||||| |||  |||| | |||||||||
+Sbjct  125842202  TTTCAGGTGTATTTAGGAGAGCAAATAGCCATTATCCCCATTTCTCACCC  125842153
+
+
+>NC_030682.2 Xenopus tropicalis strain Nigerian chromosome 6, 
+UCB_Xtro_10.0, whole genome shotgun sequence
+Length=154486312
+
+ Score = 63.9 bits (34),  Expect = 2e-07
+ Identities = 40/43 (93%), Gaps = 0/43 (0%)
+ Strand=Plus/Minus
+
+Query  1162      CTTTCAGGTGTATTTAGGAGAGCAAATAGGCATCCTCCCTAAT  1204
+                 |||||||||||||||||||||||||||||||||  |||| |||
+Sbjct  25269650  CTTTCAGGTGTATTTAGGAGAGCAAATAGGCATTTTCCCAAAT  25269608
+
+
+>NC_030681.2 Xenopus tropicalis strain Nigerian chromosome 5, 
+UCB_Xtro_10.0, whole genome shotgun sequence
+Length=164033575
+
+ Score = 52.8 bits (28),  Expect = 4e-04
+ Identities = 28/28 (100%), Gaps = 0/28 (0%)
+ Strand=Plus/Plus
+
+Query  1076       CCCAAATCTTATCCTAATTAACCTTCAA  1103
+                  ||||||||||||||||||||||||||||
+Sbjct  109404553  CCCAAATCTTATCCTAATTAACCTTCAA  109404580
+
+
+
+Lambda      K        H
+    1.33    0.621     1.12 
+
+Gapped
+Lambda      K        H
+    1.28    0.460    0.850 
+
+Effective search space used: 2986767577542
+
+
+  Database: /media/sf_VM_share/RNA-
+seq_data/BLAST/GCF_000004195.4_UCB_Xtro_10.0_genomic.fna
+    Posted date:  Oct 28, 2024  8:43 AM
+  Number of letters in database: 1,451,301,209
+  Number of sequences in database:  167
+
+
+
+Matrix: blastn matrix 1 -2
+Gap Penalties: Existence: 0, Extension: 2.5

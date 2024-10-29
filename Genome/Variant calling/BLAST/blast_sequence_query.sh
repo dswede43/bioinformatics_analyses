@@ -66,11 +66,11 @@ run_blast() {
 	wget -O $transcript_fasta $transcript_url
 
 	#run BLAST if the transcript download was successful
-    if [ -f $transcript_fasta ]; then
-        blastn -query $transcript_fasta -db $blast_db -out $blast_result
-    else
-        echo "Error: Failed to download ${transcript_id} sequence"
-    fi
+	if [ -f $transcript_fasta ]; then
+		blastn -query $transcript_fasta -db $blast_db -out $blast_result
+	else
+		echo "Error: Failed to download ${transcript_id} sequence"
+	fi
 }
 
 #export function and variables for GNU parallel
